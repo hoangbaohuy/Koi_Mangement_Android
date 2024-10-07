@@ -23,3 +23,8 @@ số nước không đạt chuẩn.
 
 ![image](https://github.com/user-attachments/assets/a9563b5a-777f-4adf-bf57-80faf965bfda)
 
+# Introduction Page
+
+![image](https://github.com/user-attachments/assets/2463bef0-c18d-42b6-93d9-137c8a3f141c)
+
+
