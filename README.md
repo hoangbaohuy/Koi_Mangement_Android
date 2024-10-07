@@ -14,3 +14,8 @@ số nước không đạt chuẩn.
 - Chức năng cho phép đặt mua các sản phẩm để cải thiện các thông số nước và sản phẩm điều trị sức khỏe cá Koi.
 - Trang tin tức, blog chia sẽ, ...
 - Dashboard & Report
+
+# Login Page
+![image](https://github.com/user-attachments/assets/290cea7d-36f9-4440-a63a-bd68f797a054)
+# Register Page
+![image](https://github.com/user-attachments/assets/d44b5f33-f297-4a67-8169-6a865e9c5a38)
