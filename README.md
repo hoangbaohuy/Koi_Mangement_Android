@@ -27,4 +27,8 @@ số nước không đạt chuẩn.
 
 ![image](https://github.com/user-attachments/assets/2463bef0-c18d-42b6-93d9-137c8a3f141c)
 
+# Dashboard Customer Page
+
+![image](https://github.com/user-attachments/assets/e76f4a12-7e65-479d-a140-027c09cac5fa)
+
 
