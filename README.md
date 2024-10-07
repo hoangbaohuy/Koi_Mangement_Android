@@ -16,6 +16,10 @@ số nước không đạt chuẩn.
 - Dashboard & Report
 
 # Login Page
-![image](https://github.com/user-attachments/assets/290cea7d-36f9-4440-a63a-bd68f797a054)
+
+![image](https://github.com/user-attachments/assets/a5f7ee41-9d19-4a4b-867f-eaf546413a0c)
+
 # Register Page
-![image](https://github.com/user-attachments/assets/d44b5f33-f297-4a67-8169-6a865e9c5a38)
+
+![image](https://github.com/user-attachments/assets/a9563b5a-777f-4adf-bf57-80faf965bfda)
+
