@@ -27,8 +27,14 @@ số nước không đạt chuẩn.
 
 ![image](https://github.com/user-attachments/assets/2463bef0-c18d-42b6-93d9-137c8a3f141c)
 
-# Dashboard Customer Page
+# Dashboard Manager Page
 
 ![image](https://github.com/user-attachments/assets/e76f4a12-7e65-479d-a140-027c09cac5fa)
+
+# Dashboard Cusomter Page (Navigation Drawer + Bottom Navigation + Bottom Sheet Dialog)
+
+![image](https://github.com/user-attachments/assets/def13e43-384c-465c-9324-2616a17001ee)
+![image](https://github.com/user-attachments/assets/0604afd3-af9c-4337-88b5-31a070c30b0c)
+![image](https://github.com/user-attachments/assets/00d0929e-f535-400e-84cf-89bea947e814)
 
 
