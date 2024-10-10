@@ -12,22 +12,12 @@
         android:title="Products"
         android:icon="@drawable/to_do_list"
         />
-
-
     <item
         android:title=""/>
     <item
         android:id="@+id/carts"
         android:title="Carts"
         android:icon="@drawable/shopping_cart"/>
-<!--    <item-->
-<!--        android:id="@+id/histories"-->
-<!--        android:title="Histories"-->
-<!--        android:icon="@drawable/time_past" />-->
-<!--    <item-->
-<!--        android:id="@+id/chats"-->
-<!--        android:title="Chats"-->
-<!--        android:icon="@drawable/messages" />-->
     <item
         android:id="@+id/account"
         android:title="Account"
