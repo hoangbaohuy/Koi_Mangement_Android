@@ -20,11 +20,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.koimanagement.Fragments.AccountFragment;
+import com.example.koimanagement.Fragments.CartFragment;
 import com.example.koimanagement.Fragments.HomeFragment;
-import com.example.koimanagement.Fragments.LibraryFragment;
-import com.example.koimanagement.Fragments.ShortsFragment;
-import com.example.koimanagement.Fragments.SubscriptionsFragment;
-import com.example.koimanagement.MainActivity;
+import com.example.koimanagement.Fragments.ProductFragment;
 import com.example.koimanagement.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -59,12 +58,12 @@ public class CustomerActivity extends AppCompatActivity {
 
             if (item.getItemId() == R.id.home) {
                 replaceFragment(new HomeFragment());
-            } else if (item.getItemId() == R.id.shorts) {
-                replaceFragment(new ShortsFragment());
-            } else if (item.getItemId() == R.id.subscriptions) {
-                replaceFragment(new SubscriptionsFragment());
-            } else if (item.getItemId() == R.id.library) {
-                replaceFragment(new LibraryFragment());
+            } else if (item.getItemId() == R.id.carts) {
+                replaceFragment(new CartFragment());
+            } else if (item.getItemId() == R.id.products) {
+                replaceFragment(new ProductFragment());
+            } else if (item.getItemId() == R.id.account) {
+                replaceFragment(new AccountFragment());
             }
             return true;
         });
@@ -89,9 +88,9 @@ public class CustomerActivity extends AppCompatActivity {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.bottom_sheet_layout);
 
-        LinearLayout videoLayout = dialog.findViewById(R.id.layoutVideo);
-        LinearLayout shortsLayout = dialog.findViewById(R.id.layoutShorts);
-        LinearLayout liveLayout = dialog.findViewById(R.id.layoutLive);
+        LinearLayout videoLayout = dialog.findViewById(R.id.layoutHistory);
+        LinearLayout shortsLayout = dialog.findViewById(R.id.layoutChat);
+        LinearLayout liveLayout = dialog.findViewById(R.id.layoutLocation);
         ImageView cancelButton = dialog.findViewById(R.id.cancelButton);
 
         videoLayout.setOnClickListener(new View.OnClickListener() {
@@ -99,7 +98,7 @@ public class CustomerActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 dialog.dismiss();
-                Toast.makeText(CustomerActivity.this,"Upload a Video is clicked",Toast.LENGTH_SHORT).show();
+                Toast.makeText(CustomerActivity.this,"History is clicked",Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -109,7 +108,7 @@ public class CustomerActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 dialog.dismiss();
-                Toast.makeText(CustomerActivity.this,"Create a short is Clicked",Toast.LENGTH_SHORT).show();
+                Toast.makeText(CustomerActivity.this,"Chat is Clicked",Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -119,7 +118,7 @@ public class CustomerActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 dialog.dismiss();
-                Toast.makeText(CustomerActivity.this,"Go live is Clicked",Toast.LENGTH_SHORT).show();
+                Toast.makeText(CustomerActivity.this,"Location is Clicked",Toast.LENGTH_SHORT).show();
 
             }
         });

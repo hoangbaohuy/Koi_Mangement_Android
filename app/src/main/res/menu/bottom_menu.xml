@@ -8,21 +8,29 @@
         android:icon="@drawable/home"/>
 
     <item
-        android:id="@+id/shorts"
-        android:title="Shorts"
-        android:icon="@drawable/play"
+        android:id="@+id/products"
+        android:title="Products"
+        android:icon="@drawable/to_do_list"
         />
+
 
     <item
         android:title=""/>
-
     <item
-        android:id="@+id/subscriptions"
-        android:title="Subscriptions"
-        android:icon="@drawable/subscribe" />
+        android:id="@+id/carts"
+        android:title="Carts"
+        android:icon="@drawable/shopping_cart"/>
+<!--    <item-->
+<!--        android:id="@+id/histories"-->
+<!--        android:title="Histories"-->
+<!--        android:icon="@drawable/time_past" />-->
+<!--    <item-->
+<!--        android:id="@+id/chats"-->
+<!--        android:title="Chats"-->
+<!--        android:icon="@drawable/messages" />-->
     <item
-        android:id="@+id/library"
-        android:title="Library"
-        android:icon="@drawable/book" />
+        android:id="@+id/account"
+        android:title="Account"
+        android:icon="@drawable/user" />
 
 </menu>
