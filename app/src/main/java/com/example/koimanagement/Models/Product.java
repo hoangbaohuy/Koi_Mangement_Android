@@ -2,14 +2,24 @@ package com.example.koimanagement.Models;
 
 import java.io.Serializable;
 
+import com.google.gson.annotations.SerializedName;
+import java.io.Serializable;
 public class Product implements Serializable {
+    @SerializedName("productId")
     public int ProductId;
-    public String ProductName;
-    public String ProductDescription;
-    public double Price;
-    public int StockQuantity;
-    // List OrderItem OrderItems
 
+    @SerializedName("productName")
+    public String ProductName;
+
+    @SerializedName("productDescription")
+    public String ProductDescription;
+
+    @SerializedName("price")
+    public double Price;
+
+    @SerializedName("stockQuantity")
+    public int StockQuantity;
+    public Product() {}
     public Product(int productId, String productName, String productDescription, double price, int stockQuantity) {
         ProductId = productId;
         ProductName = productName;
