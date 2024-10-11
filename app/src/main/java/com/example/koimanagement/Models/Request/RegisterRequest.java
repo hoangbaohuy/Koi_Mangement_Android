@@ -1,12 +1,13 @@
 package com.example.koimanagement.Models.Request;
 
 public class RegisterRequest {
-    private String name;
+    private String userName;
+    private String passwordHash;
     private String email;
-    private String password;
-    public RegisterRequest(String name, String email, String password) {
-        this.name = name;
+
+    public RegisterRequest(String userName, String email, String passwordHash) {
+        this.userName = userName;
         this.email = email;
-        this.password = password;
+        this.passwordHash = passwordHash;
     }
 }

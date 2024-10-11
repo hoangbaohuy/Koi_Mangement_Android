@@ -13,7 +13,7 @@ import com.example.koimanagement.Models.Request.RegisterRequest;
 import com.example.koimanagement.Models.Response.RegisterResponse;
 import com.example.koimanagement.R;
 
-import IService.IAuthApiService;
+import com.example.koimanagement.IService.IAuthApiService;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -46,7 +46,8 @@ public class RegisterActivity  extends AppCompatActivity {
         RegisterRequest request = new RegisterRequest( name ,email,password);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://localhost:7230/Authen/Register")
+                .baseUrl("https://10.0.2.2:7230/")
+                .client(UnsafeOkHttpClient.getUnsafeOkHttpClient())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -58,8 +59,15 @@ public class RegisterActivity  extends AppCompatActivity {
             public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(RegisterActivity.this, "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(RegisterActivity.this, "Đăng ký thất bại!", Toast.LENGTH_SHORT).show();
+                }  else {
+                    // In ra lỗi phản hồi từ API
+                    try {
+                        String errorBody = response.errorBody().string();
+                        Toast.makeText(RegisterActivity.this, "Đăng ký thất bại: " + errorBody, Toast.LENGTH_LONG).show();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Toast.makeText(RegisterActivity.this, "Đăng ký thất bại: Không thể lấy thông báo lỗi", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
 
