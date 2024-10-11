@@ -3,6 +3,7 @@ package com.example.koimanagement.Fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -41,7 +42,7 @@ public class ProductFragment extends Fragment {
         recyclerViewProducts = view.findViewById(R.id.recyclerViewProducts);
 
         // Set LayoutManager for RecyclerView
-        recyclerViewProducts.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerViewProducts.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
         // Initialize Adapter and set it to RecyclerView
         productAdapter = new ProductAdapter(getContext(), productList, productImages);
