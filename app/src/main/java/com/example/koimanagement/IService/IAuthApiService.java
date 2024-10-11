@@ -1,4 +1,4 @@
-package IService;
+package com.example.koimanagement.IService;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;

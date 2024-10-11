@@ -13,7 +13,7 @@ import com.example.koimanagement.Models.Request.RegisterRequest;
 import com.example.koimanagement.Models.Response.RegisterResponse;
 import com.example.koimanagement.R;
 
-import IService.IAuthApiService;
+import com.example.koimanagement.IService.IAuthApiService;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
