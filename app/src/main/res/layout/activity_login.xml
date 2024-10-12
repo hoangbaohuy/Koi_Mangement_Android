@@ -8,12 +8,13 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="739dp"
-        android:layout_height="345dp"
+        android:layout_width="match_parent"
+        android:layout_height="310dp"
         app:srcCompat="@drawable/koi_canva"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-184dp"
-        tools:layout_editor_absoluteY="-56dp" />
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
         android:id="@+id/textView1"

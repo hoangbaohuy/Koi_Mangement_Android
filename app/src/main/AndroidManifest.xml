@@ -23,7 +23,7 @@
 <!--            android:exported="true">-->
 <!--        </activity>-->
         <activity
-            android:name=".Activities.LoginActivity"
+            android:name=".Activities.CustomerActivity"
             android:exported="true">
         </activity>
         <activity
@@ -35,7 +35,7 @@
             android:exported="true">
         </activity>
         <activity
-            android:name=".Activities.CustomerActivity"
+            android:name=".Activities.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
