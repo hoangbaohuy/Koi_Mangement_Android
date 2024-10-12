@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,7 +21,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     List<Product> productList;
     int listImages[];
 
-    public ProductAdapter(Context ctx, List<Product> productList, int images[]) {
+    public ProductAdapter(Context ctx, List<Product> productList, int[] images) {
         this.context = ctx;
         this.productList = productList;
         this.listImages = images;
