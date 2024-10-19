@@ -8,6 +8,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import com.bumptech.glide.Glide; // Thêm import Glide
 import com.example.koimanagement.Models.Product;
 import com.example.koimanagement.R;
 
@@ -34,7 +35,13 @@ public class ProductDetailActivity extends AppCompatActivity {
         btnAddToCart = findViewById(R.id.btnAddToCart);
 
         // Set product details
-        imageProduct.setImageResource(R.drawable.replace); // replace with actual image
+        // Sử dụng Glide để tải hình ảnh từ URL
+        Glide.with(this)
+                .load(product.getImage()) // Giả sử bạn có phương thức getImageUrl() trong Product để lấy URL
+                .placeholder(R.drawable.replace) // Hình ảnh thay thế trong lúc tải
+                .error(R.drawable.replace) // Hình ảnh hiển thị khi có lỗi
+                .into(imageProduct);
+
         txtName.setText(product.getProductName());
         txtPrice.setText(String.format("%.2f", product.getPrice()) + " VND");
         txtStockQuantity.setText("Stock: " + product.getStockQuantity());
@@ -50,4 +57,3 @@ public class ProductDetailActivity extends AppCompatActivity {
         });
     }
 }
-

@@ -17,15 +17,20 @@ public class Product implements Serializable {
     @SerializedName("price")
     public double Price;
 
+    @SerializedName("image")
+    public String Image;
+
+
     @SerializedName("stockQuantity")
     public int StockQuantity;
     public Product() {}
-    public Product(int productId, String productName, String productDescription, double price, int stockQuantity) {
+    public Product(int productId, String productName, String productDescription, double price, int stockQuantity,String image) {
         ProductId = productId;
         ProductName = productName;
         ProductDescription = productDescription;
         Price = price;
         StockQuantity = stockQuantity;
+        Image = image ;
     }
 
     public int getProductId() {
@@ -66,5 +71,13 @@ public class Product implements Serializable {
 
     public void setStockQuantity(int stockQuantity) {
         StockQuantity = stockQuantity;
+    }
+
+    public String getImage() {
+        return Image;
+    }
+
+    public void setImage(String image) {
+        Image = image;
     }
 }
