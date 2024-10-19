@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import retrofit2.Callback;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,11 +12,15 @@ import com.example.koimanagement.Models.Request.RegisterRequest;
 import com.example.koimanagement.Models.Response.RegisterResponse;
 import com.example.koimanagement.R;
 
+import java.util.concurrent.TimeUnit;
+import okhttp3.OkHttpClient;
 import com.example.koimanagement.IService.IAuthApiService;
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
 
 public class RegisterActivity  extends AppCompatActivity {
     private EditText edName , edEmail ,edPassword;
@@ -44,7 +47,6 @@ public class RegisterActivity  extends AppCompatActivity {
 
 
         RegisterRequest request = new RegisterRequest( name ,email,password);
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://10.0.2.2:7230/")
                 .client(UnsafeOkHttpClient.getUnsafeOkHttpClient())
@@ -70,7 +72,6 @@ public class RegisterActivity  extends AppCompatActivity {
                     }
                 }
             }
-
             @Override
             public void onFailure(Call<RegisterResponse> call, Throwable t) {
                 Toast.makeText(RegisterActivity.this, "Lỗi: " + t.getMessage(), Toast.LENGTH_SHORT).show();
