@@ -13,6 +13,26 @@
         android:orientation="vertical"
         android:padding="16dp">
 
+        <!-- Order ID -->
+        <TextView
+            android:id="@+id/tvOrderId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order ID: 0"
+            android:textSize="20sp"
+            android:textColor="#000000"
+            android:paddingBottom="4dp"/>
+
+        <!-- Order Date -->
+        <TextView
+            android:id="@+id/tvOrderDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order Date: 2024-10-21"
+            android:textSize="20sp"
+            android:textColor="#000000"
+            android:paddingBottom="4dp"/>
+
         <!-- Total Price -->
         <TextView
             android:id="@+id/tvTotalPrice"
@@ -24,34 +44,13 @@
             android:textColor="#FF5722"
             android:paddingBottom="8dp"/>
 
-        <!-- Status -->
-        <TextView
-            android:id="@+id/tvStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Status: Pending"
-            android:textSize="16sp"
-            android:textStyle="italic"
-            android:textColor="#4CAF50"
-            android:paddingBottom="4dp"/>
-
         <!-- Address -->
         <TextView
             android:id="@+id/tvAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Address: 123 Main Street"
-            android:textSize="16sp"
-            android:textColor="#000000"
-            android:paddingBottom="4dp"/>
-
-        <!-- Order Date -->
-        <TextView
-            android:id="@+id/tvOrderDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Order Date: 2024-10-21"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:textColor="#000000"
             android:paddingBottom="4dp"/>
 
@@ -61,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Phone: 123-456-7890"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:textColor="#000000"
             android:paddingBottom="4dp"/>
 
@@ -71,6 +70,43 @@
             android:layout_height="1dp"
             android:background="#E0E0E0"
             android:layout_marginTop="8dp"/>
+
+        <!-- Products List -->
+        <LinearLayout
+            android:id="@+id/layoutProducts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="8dp">
+
+            <!-- Example Product Item -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="8dp">
+
+                <!-- Product Image -->
+                <ImageView
+                    android:id="@+id/ivProductImage"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ic_launcher_foreground"
+                    android:layout_marginEnd="8dp"
+                    android:contentDescription="Product Image"/>
+
+                <!-- Product Name -->
+                <TextView
+                    android:id="@+id/tvProductName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Product Name"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:textColor="#000000"/>
+            </LinearLayout>
+        </LinearLayout>
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/white"> <!-- Optional background color -->
+
+    <!-- Toolbar with Back Button -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:title="Order Details"
+        android:titleTextColor="@android:color/white"
+        android:elevation="4dp">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/red_orange"
+            android:contentDescription="Back Button"
+            android:src="@android:drawable/ic_menu_close_clear_cancel" /> <!-- You can replace this with your own icon -->
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <!-- Order ID -->
+    <TextView
+        android:id="@+id/txtOrderIdValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Order ID:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:id="@+id/txtOrderId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OrderID"
+        />
+
+    <!-- User ID -->
+    <TextView
+        android:id="@+id/txtUserIdValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User ID:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:id="@+id/txtUserId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UserID"
+        android:textSize="16sp"
+        android:layout_marginTop="4dp" />
+
+    <!-- Order Date -->
+    <TextView
+        android:id="@+id/txtOrderDateValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Order Date:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:id="@+id/txtOrderDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Order-Date"
+    android:textSize="16sp"
+    android:layout_marginTop="4dp" />
+
+    <!-- Total Price -->
+    <TextView
+        android:id="@+id/txtTotalPriceValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Price:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:id="@+id/txtTotalPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Price"
+    android:textSize="16sp"
+    android:layout_marginTop="4dp" />
+
+    <!-- Address -->
+    <TextView
+        android:id="@+id/txtAddressValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Address"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:id="@+id/txtAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Address"
+    android:textSize="16sp"
+    android:layout_marginTop="4dp" />
+
+    <!-- Phone -->
+    <TextView
+        android:id="@+id/txtPhoneValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Phone:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:id="@+id/txtPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Phone"
+        android:textSize="16sp"
+        android:layout_marginTop="4dp" />
+
+    <!-- Order Items -->
+
+
+    <TextView
+        android:id="@+id/txtOrderItemsValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Order Items"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp" />
+    <TextView
+        android:id="@+id/txtOrderItems"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Order Items:"
+        android:textSize="16sp"
+
+        android:layout_marginTop="4dp" />
+
+
+
+</LinearLayout>

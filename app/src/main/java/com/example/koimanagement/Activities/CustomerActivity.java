@@ -1,6 +1,7 @@
 package com.example.koimanagement.Activities;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -98,6 +99,12 @@ public class CustomerActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 dialog.dismiss();
+                // Create an Intent to start the new activity
+                Intent intent = new Intent(CustomerActivity.this, OrderActivity.class);
+
+                // Start the new activity
+                startActivity(intent);
+
                 Toast.makeText(CustomerActivity.this,"History is clicked",Toast.LENGTH_SHORT).show();
 
             }

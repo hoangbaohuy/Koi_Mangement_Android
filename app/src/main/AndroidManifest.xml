@@ -2,6 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
+
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+
+
     <application
         android:usesCleartextTraffic="true"
         android:allowBackup="true"
@@ -23,11 +30,7 @@
 <!--            android:exported="true">-->
 <!--        </activity>-->
         <activity
-            android:name=".Activities.CustomerActivity"
-            android:exported="true">
-        </activity>
-        <activity
-            android:name=".Activities.ProductDetailActivity"
+            android:name=".Fragments.CheckoutSummaryActivity"
             android:exported="true">
         </activity>
         <activity
@@ -35,7 +38,19 @@
             android:exported="true">
         </activity>
         <activity
+            android:name=".Activities.ProductDetailActivity"
+            android:exported="true">
+        </activity>
+        <activity
             android:name=".Activities.LoginActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".Activities.OrderActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".Activities.CustomerActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
