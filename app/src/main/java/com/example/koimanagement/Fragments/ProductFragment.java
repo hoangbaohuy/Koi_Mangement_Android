@@ -45,7 +45,7 @@ public class ProductFragment extends Fragment {
     private void fetchProducts() {
         if (retrofitInstance == null) {
             retrofitInstance = new Retrofit.Builder()
-                    .baseUrl("https://10.0.2.2:7230/") // Adjust this for local testing
+                    .baseUrl("https://10.0.2.2:7177/") // Adjust this for local testing
                     .client(UnsafeOkHttpClient.getUnsafeOkHttpClient())
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();

@@ -48,7 +48,7 @@ public class RegisterActivity  extends AppCompatActivity {
 
         RegisterRequest request = new RegisterRequest( name ,email,password);
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://10.0.2.2:7230/")
+                .baseUrl("https://10.0.2.2:7177/")
                 .client(UnsafeOkHttpClient.getUnsafeOkHttpClient())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
