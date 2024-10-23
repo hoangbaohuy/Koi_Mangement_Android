@@ -3,13 +3,13 @@ package com.example.koimanagement.Fragments;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,7 +18,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import android.content.Context;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.example.koimanagement.Activities.UnsafeOkHttpClient;
 import com.example.koimanagement.Adapters.CartAdapter;
 import com.example.koimanagement.IService.ICartService;
@@ -32,8 +35,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import okhttp3.Request;
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -47,7 +48,7 @@ public class CartFragment extends Fragment {
     private List<CartItem> cartItems;
     private ICartService apiService;
     private TextView txtTotal;
-    private Button btnCheckOut; // Declare the checkout button
+    private Button btnCheckOut;
 
     @Nullable
     @Override
@@ -64,33 +65,54 @@ public class CartFragment extends Fragment {
         // Initialize total price TextView
         txtTotal = view.findViewById(R.id.txtTotal);
 
-
-        // Set initial quantity
-
-        // Set click listeners
-
+        // Initialize checkout button
         btnCheckOut = view.findViewById(R.id.btnCheckOut);
 
         // Set up Retrofit
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://10.0.2.2:7177/") // Localhost for emulator
-                .client(UnsafeOkHttpClient.getUnsafeOkHttpClient()) // Allow unsafe SSL certificates
+                .client(UnsafeOkHttpClient.getUnsafeOkHttpClient())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         apiService = retrofit.create(ICartService.class);
 
         // Load cart items from API
-        loadCartItems(1); // Dummy userId, replace with actual logic
+        loadCartItemsByUserID();
 
         // Set up the adapter
         cartAdapter = new CartAdapter(getContext(), cartItems, apiService);
         recyclerViewCart.setAdapter(cartAdapter);
 
         // Set click listener for checkout button
-        btnCheckOut.setOnClickListener(v -> showCheckoutDialog(1)); // Show dialog to enter address and phone
+        btnCheckOut.setOnClickListener(v -> showCheckoutDialog(0)); // Placeholder userId
 
         return view;
+    }
+
+    private void loadCartItemsByUserID() {
+        // Lấy JWT từ SharedPreferences
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
+        String jwtToken = sharedPreferences.getString("jwtToken", null);
+
+        if (jwtToken != null) {
+            // Giải mã JWT để lấy userID
+            DecodedJWT decodedJWT = JWT.decode(jwtToken);
+            String userIdString = decodedJWT.getClaim("userId").asString(); // Lấy userId dưới dạng chuỗi
+
+            if (userIdString != null) {
+                try {
+                    int userId = Integer.parseInt(userIdString); // Chuyển đổi chuỗi thành int
+                    loadCartItems(userId); // Gọi hàm loadCartItems với userId đã lấy được
+                } catch (NumberFormatException e) {
+                    Toast.makeText(getContext(), "Invalid userId format", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(getContext(), "Không tìm thấy userId trong token", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(getContext(), "Token không hợp lệ", Toast.LENGTH_SHORT).show();
+        }
     }
 
     // Method to load cart items
