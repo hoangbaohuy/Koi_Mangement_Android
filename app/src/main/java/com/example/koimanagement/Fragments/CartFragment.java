@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +32,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import okhttp3.Request;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -61,7 +64,11 @@ public class CartFragment extends Fragment {
         // Initialize total price TextView
         txtTotal = view.findViewById(R.id.txtTotal);
 
-        // Initialize the checkout button
+
+        // Set initial quantity
+
+        // Set click listeners
+
         btnCheckOut = view.findViewById(R.id.btnCheckOut);
 
         // Set up Retrofit

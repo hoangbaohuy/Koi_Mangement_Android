@@ -40,7 +40,9 @@ public class ProductDetailActivity extends AppCompatActivity {
     private TextView txtName, txtPrice, txtStockQuantity, txtDescription;
     private AppCompatButton btnAddToCart;
     private OkHttpClient client;
-
+    private ImageView imageMinus, imageAdd;
+    private TextView txtOrder;
+    private int quantity = 1;
     private static final String CHANNEL_ID = "cart_notifications";
 
     @Override
@@ -59,10 +61,26 @@ public class ProductDetailActivity extends AppCompatActivity {
         txtStockQuantity = findViewById(R.id.txtStockQuantity);
         txtDescription = findViewById(R.id.txtDescription);
         btnAddToCart = findViewById(R.id.btnAddToCart);
-
+        imageMinus = findViewById(R.id.imageMinus);
+        imageAdd = findViewById(R.id.imageAdd);
+        txtOrder = findViewById(R.id.txtOrder);
+        txtOrder.setText(String.valueOf(quantity));
         // Use UnsafeOkHttpClient
         client = UnsafeOkHttpClient.getUnsafeOkHttpClient();
+        imageMinus.setOnClickListener(v -> {
+            if (quantity > 1) { // Ensure quantity doesn't go below 1
+                quantity--;
+                txtOrder.setText(String.valueOf(quantity)); // Update the TextView
+            } else {
+                Toast.makeText(this, "Quantity cannot be less than 1", Toast.LENGTH_SHORT).show();
+            }
+        });
 
+// Increase quantity button click listener
+        imageAdd.setOnClickListener(v -> {
+            quantity++;
+            txtOrder.setText(String.valueOf(quantity)); // Update the TextView
+        });
         // Set product details
         Glide.with(this)
                 .load(product.getImage()) // Lấy URL hình ảnh từ đối tượng Product
@@ -81,7 +99,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         // Add to cart button click listener
         btnAddToCart.setOnClickListener(v -> {
             Toast.makeText(this, "Add to Cart clicked", Toast.LENGTH_SHORT).show();
-            addToCart(product.getProductId(), 1); // Giả sử quantity là 1
+            addToCart(product.getProductId(), quantity);
         });
     }
 
