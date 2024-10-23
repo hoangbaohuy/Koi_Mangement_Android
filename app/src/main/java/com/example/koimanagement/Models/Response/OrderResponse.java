@@ -15,9 +15,22 @@ public class OrderResponse {
     // Nested class for OrderItem
     public static class OrderItemResponse {
         private String productName;
+        private String image;
 
         public String getProductName() {
             return productName;
+        }
+
+        public String getImage() {
+            return image;
+        }
+
+        public void setImage(String image) {
+            this.image = image;
+        }
+
+        public OrderItemResponse(String productName) {
+            this.productName = productName;
         }
 
         public void setProductName(String productName) {
