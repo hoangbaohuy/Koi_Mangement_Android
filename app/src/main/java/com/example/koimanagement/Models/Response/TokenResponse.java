@@ -1,8 +1,6 @@
 package com.example.koimanagement.Models.Response;
 
-public class ResponseEntity {
-    private String message;
-    private boolean success;
+public class TokenResponse {
     private String token; // or whatever the actual name is in the response
     // Other fields...
 

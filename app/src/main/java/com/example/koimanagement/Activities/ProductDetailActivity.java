@@ -4,7 +4,9 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Base64;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,6 +51,15 @@ public class ProductDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.product_item_detail);
+
+
+        // Retrieve the JWT from SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE);
+        String jwtToken = sharedPreferences.getString("JWT", null);
+
+        // Get the userId from the JWT
+        int userId = (jwtToken != null) ? getUserIdFromJwt(jwtToken) : -1;
+
 
         // Get the passed product object
         Product product = (Product) getIntent().getSerializableExtra("product");
@@ -99,12 +110,27 @@ public class ProductDetailActivity extends AppCompatActivity {
         // Add to cart button click listener
         btnAddToCart.setOnClickListener(v -> {
             Toast.makeText(this, "Add to Cart clicked", Toast.LENGTH_SHORT).show();
-            addToCart(product.getProductId(), quantity);
+            addToCart(product.getProductId(), quantity, userId);
         });
     }
-
-    private void addToCart(int productId, int quantity) {
-        int userId = 1; // Giả định userId là 1 cho ví dụ này
+    private int getUserIdFromJwt(String jwt) {
+        // Split the JWT token into parts
+        String[] parts = jwt.split("\\.");
+        if (parts.length == 3) {
+            // Decode the payload (the second part)
+            String payload = parts[1];
+            // Decode from Base64
+            String json = new String(Base64.decode(payload, Base64.URL_SAFE));
+            try {
+                JSONObject jsonObject = new JSONObject(json);
+                return jsonObject.getInt("userId"); // Adjust according to your JWT structure
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return -1; // or handle as needed
+    }
+    private void addToCart(int productId, int quantity,int userId) {
 
         // Đảm bảo URL giống như trong yêu cầu curl
         String url = "https://10.0.2.2:7177/Cart/add-to-cart?userId=" + userId
