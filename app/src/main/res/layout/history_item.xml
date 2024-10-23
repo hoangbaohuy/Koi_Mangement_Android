@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Order ID: 0"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:textColor="#000000"
             android:paddingBottom="4dp"/>
 
@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Order Date: 2024-10-21"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:textColor="#000000"
             android:paddingBottom="4dp"/>
 
@@ -50,7 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Address: 123 Main Street"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:textColor="#000000"
             android:paddingBottom="4dp"/>
 
@@ -60,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Phone: 123-456-7890"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:textColor="#000000"
             android:paddingBottom="4dp"/>
 
@@ -89,8 +89,8 @@
                 <!-- Product Image -->
                 <ImageView
                     android:id="@+id/ivProductImage"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:src="@drawable/ic_launcher_foreground"
                     android:layout_marginEnd="8dp"
                     android:contentDescription="Product Image"/>
@@ -101,7 +101,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Product Name"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
                     android:textColor="#000000"/>
             </LinearLayout>
         </LinearLayout>
