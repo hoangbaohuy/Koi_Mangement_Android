@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -11,147 +12,313 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:title="Order Details"
-        android:titleTextColor="@android:color/white"
         android:elevation="4dp">
 
-        <ImageButton
-            android:id="@+id/btnBack"
-            android:layout_width="wrap_content"
+        <!-- LinearLayout to hold the title and the button -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/red_orange"
-            android:contentDescription="Back Button"
-            android:src="@android:drawable/ic_menu_close_clear_cancel" /> <!-- You can replace this with your own icon -->
+            android:orientation="horizontal">
 
+            <!-- Title with weight for centering -->
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Billing"
+                android:paddingTop="5dp"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:textSize="30sp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_marginEnd="16dp"/>
+
+            <!-- Back Button aligned to the right -->
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/red_orange"
+                android:contentDescription="Back Button"
+                android:src="@android:drawable/ic_menu_close_clear_cancel"/>
+        </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
 
-    <!-- Order ID -->
-    <TextView
-        android:id="@+id/txtOrderIdValue"
-        android:layout_width="wrap_content"
+    <!-- Icon and Text Views Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Order ID:"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="16dp">
+
+        <!-- Icon -->
+        <ImageView
+            android:id="@+id/icon_success"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/circle"
+            android:contentDescription="Success Icon"/>
+
+        <!-- Payment Transaction Successful Text -->
+        <TextView
+            android:id="@+id/txtPaymentTransactionSuccessful"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Payment Transaction Successful"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:gravity="center" />
+
+        <!-- Transaction Information Text -->
+        <TextView
+            android:id="@+id/txtTransactionInformation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Transaction Information"
+            android:textSize="23sp"
+            android:layout_marginTop="10dp"
+            android:gravity="center" />
+    </LinearLayout>
+
+    <!-- User Info Section with Border -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:cardElevation="4dp"
+        app:cardCornerRadius="8dp"
+        app:cardBackgroundColor="@color/white"
+        android:background="@color/white"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_background"
+            android:padding="2dp"
+            android:orientation="vertical">
+
+            <!-- User ID -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp">
+
+                <TextView
+                    android:id="@+id/txtUserIdValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="User ID:"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_weight="1" /> <!-- Use weight for proper alignment -->
+
+                <TextView
+                    android:id="@+id/txtUserId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="UserID"
+                    android:paddingRight="10dp"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <!-- Address -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:id="@+id/txtAddressValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Address:"
+                    android:textSize="18sp"
+                    android:paddingLeft="10dp"
+                    android:textStyle="bold"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/txtAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Address"
+                    android:paddingRight="10dp"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <!-- Phone -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="5dp"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:id="@+id/txtPhoneValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Phone:"
+                    android:textSize="18sp"
+                    android:paddingLeft="10dp"
+                    android:textStyle="bold"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/txtPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Phone"
+                    android:paddingRight="10dp"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- Order Info Section with Border -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:cardElevation="4dp"
+        app:cardCornerRadius="8dp"
+        app:cardBackgroundColor="@color/white"
+        android:background="@color/white"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_background"
+            android:padding="2dp"
+            android:orientation="vertical">
+
+            <!-- Order ID -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:id="@+id/txtOrderIdValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Order ID:"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:paddingLeft="10dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/txtOrderId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="10dp"
+                    android:text="OrderID" />
+            </LinearLayout>
+
+            <!-- Order Date -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:id="@+id/txtOrderDateValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Order Date:"
+                    android:textSize="18sp"
+                    android:paddingLeft="10dp"
+                    android:textStyle="bold"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/txtOrderDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Order-Date"
+                    android:textSize="16sp"
+                    android:paddingRight="10dp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+            <!-- Total Price -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:id="@+id/txtTotalPriceValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Total Price:"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:paddingLeft="10dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/txtTotalPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total Price"
+                    android:textSize="16sp"
+                    android:paddingRight="10dp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+            <!-- Order Items -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:id="@+id/txtOrderItemsValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Order Items:"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:paddingLeft="10dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/txtOrderItems"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Order Items"
+                    android:textSize="16sp"
+                    android:paddingRight="10dp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+    <!-- View Details Button -->
+    <Button
+        android:id="@+id/btnViewDetails"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="View Details"
         android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginTop="16dp" />
-
-    <TextView
-        android:id="@+id/txtOrderId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="OrderID"
-        />
-
-    <!-- User ID -->
-    <TextView
-        android:id="@+id/txtUserIdValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="User ID:"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginTop="16dp" />
-
-    <TextView
-        android:id="@+id/txtUserId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="UserID"
-        android:textSize="16sp"
-        android:layout_marginTop="4dp" />
-
-    <!-- Order Date -->
-    <TextView
-        android:id="@+id/txtOrderDateValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Order Date:"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginTop="16dp" />
-
-    <TextView
-        android:id="@+id/txtOrderDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Order-Date"
-    android:textSize="16sp"
-    android:layout_marginTop="4dp" />
-
-    <!-- Total Price -->
-    <TextView
-        android:id="@+id/txtTotalPriceValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Total Price:"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginTop="16dp" />
-
-    <TextView
-        android:id="@+id/txtTotalPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Total Price"
-    android:textSize="16sp"
-    android:layout_marginTop="4dp" />
-
-    <!-- Address -->
-    <TextView
-        android:id="@+id/txtAddressValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Address"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginTop="16dp" />
-
-    <TextView
-        android:id="@+id/txtAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Address"
-    android:textSize="16sp"
-    android:layout_marginTop="4dp" />
-
-    <!-- Phone -->
-    <TextView
-        android:id="@+id/txtPhoneValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Phone:"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginTop="16dp" />
-
-    <TextView
-        android:id="@+id/txtPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Phone"
-        android:textSize="16sp"
-        android:layout_marginTop="4dp" />
-
-    <!-- Order Items -->
-
-
-    <TextView
-        android:id="@+id/txtOrderItemsValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Order Items"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginTop="16dp" />
-    <TextView
-        android:id="@+id/txtOrderItems"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Order Items:"
-        android:textSize="16sp"
-
-        android:layout_marginTop="4dp" />
-
-
-
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/red_orange"
+        android:textColor="@android:color/white" />
 </LinearLayout>
