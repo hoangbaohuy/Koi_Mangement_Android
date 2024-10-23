@@ -3,20 +3,38 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:padding="20dp"
+    android:background="@android:color/white">
 
+    <!-- Add a title to the layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Contact Information"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Style the EditTexts -->
     <EditText
         android:id="@+id/editAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter Address"
-        android:inputType="textPostalAddress" />
+        android:inputType="textPostalAddress"
+        android:background="@drawable/edit_text_background"
+        android:padding="16dp"
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/editPhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter Phone Number"
-        android:inputType="phone" />
+        android:inputType="phone"
+        android:background="@drawable/edit_text_background"
+        android:padding="16dp"
+        android:textSize="18sp"
+        android:layout_marginTop="16dp" />
 
 </LinearLayout>

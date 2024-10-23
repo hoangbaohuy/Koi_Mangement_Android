@@ -11,4 +11,7 @@
     <color name="red_orange">#FF4433</color>
     <color name="lavender">#8692f7</color>
     <color name="my_black">#373b54</color>
+    <color name="primary_color">#03A9F4</color>
+    <color name="primary_dark_color">#0288D1</color>
+    <color name="accent_color">#FFC107</color>
 </resources>
