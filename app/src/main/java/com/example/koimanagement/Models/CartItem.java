@@ -1,23 +1,36 @@
 package com.example.koimanagement.Models;
 
 public class CartItem {
-    private int productId; // Product ID
-    private String productName; // Product name
-    private String productDescription; // Product description
-    private int price; // Price of the product
-    private int stockQuantity; // Quantity in stock
-    private String image;// Change to String for image URL
+    private int cartId; // Thêm trường cartId
+    private int productId; // ID sản phẩm
+    private String productName; // Tên sản phẩm
+    private int userId; // ID người dùng
+    private int quantity; // Số lượng sản phẩm trong giỏ
+    private int price; // Giá sản phẩm
+    private boolean status;
+    private String image ;// Trạng thái (có thể được sử dụng để xác định sản phẩm có còn trong giỏ hay không)
 
-    public CartItem(int productId, String productName, String productDescription, int price, int stockQuantity, String image) {
+    // Constructor
+    public CartItem(int cartId, int productId, String productName, int userId, int quantity, int price, boolean status , String image) {
+        this.cartId = cartId; // Khởi tạo cartId
         this.productId = productId;
         this.productName = productName;
-        this.productDescription = productDescription;
+        this.userId = userId; // Khởi tạo userId
+        this.quantity = quantity;
         this.price = price;
-        this.stockQuantity = stockQuantity;
-        this.image = image;
+        this.status = status;
+        this.image = image;// Khởi tạo trạng thái
     }
 
-    // Getters and Setters
+    // Getters và Setters
+    public int getCartId() {
+        return cartId; // Getter cho cartId
+    }
+
+    public void setCartId(int cartId) {
+        this.cartId = cartId; // Setter cho cartId
+    }
+
     public int getProductId() {
         return productId;
     }
@@ -34,12 +47,20 @@ public class CartItem {
         this.productName = productName;
     }
 
-    public String getProductDescription() {
-        return productDescription;
+    public int getUserId() {
+        return userId; // Getter cho userId
     }
 
-    public void setProductDescription(String productDescription) {
-        this.productDescription = productDescription;
+    public void setUserId(int userId) {
+        this.userId = userId; // Setter cho userId
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public int getPrice() {
@@ -50,19 +71,18 @@ public class CartItem {
         this.price = price;
     }
 
-    public int getStockQuantity() {
-        return stockQuantity;
+    public boolean isStatus() { // Getter cho trạng thái
+        return status;
     }
 
-    public void setStockQuantity(int stockQuantity) {
-        this.stockQuantity = stockQuantity;
+    public void setStatus(boolean status) { // Setter cho trạng thái
+        this.status = status;
     }
-
     public String getImage() {
-        return image;
+        return image; // Getter for image
     }
 
     public void setImage(String image) {
-        this.image = image;
+        this.image = image; // Setter for image
     }
 }

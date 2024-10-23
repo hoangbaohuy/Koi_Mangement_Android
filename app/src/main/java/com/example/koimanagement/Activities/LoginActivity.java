@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         String password = edPassword.getText().toString();
         LoginRequest request = new LoginRequest(email,password);
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://10.0.2.2:7230/")
+                .baseUrl("https://10.0.2.2:7177/")
                 .client(UnsafeOkHttpClient.getUnsafeOkHttpClient())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();

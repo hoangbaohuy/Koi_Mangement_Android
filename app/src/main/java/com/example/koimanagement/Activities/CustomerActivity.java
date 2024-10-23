@@ -88,12 +88,12 @@ public class CustomerActivity extends AppCompatActivity {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.bottom_sheet_layout);
 
-        LinearLayout videoLayout = dialog.findViewById(R.id.layoutHistory);
-        LinearLayout shortsLayout = dialog.findViewById(R.id.layoutChat);
-        LinearLayout liveLayout = dialog.findViewById(R.id.layoutLocation);
+        LinearLayout historyLayout = dialog.findViewById(R.id.layoutHistory);
+        LinearLayout chatLayout = dialog.findViewById(R.id.layoutChat);
+        LinearLayout locationLayout = dialog.findViewById(R.id.layoutLocation);
         ImageView cancelButton = dialog.findViewById(R.id.cancelButton);
 
-        videoLayout.setOnClickListener(new View.OnClickListener() {
+        historyLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -103,7 +103,7 @@ public class CustomerActivity extends AppCompatActivity {
             }
         });
 
-        shortsLayout.setOnClickListener(new View.OnClickListener() {
+        chatLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -113,7 +113,7 @@ public class CustomerActivity extends AppCompatActivity {
             }
         });
 
-        liveLayout.setOnClickListener(new View.OnClickListener() {
+        locationLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

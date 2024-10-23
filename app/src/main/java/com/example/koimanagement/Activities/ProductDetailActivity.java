@@ -1,5 +1,9 @@
 package com.example.koimanagement.Activities;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -9,8 +13,10 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.core.app.NotificationCompat;
 
 import com.bumptech.glide.Glide;
+import com.example.koimanagement.Fragments.CartFragment;
 import com.example.koimanagement.Models.Product;
 import com.example.koimanagement.R;
 
@@ -34,6 +40,8 @@ public class ProductDetailActivity extends AppCompatActivity {
     private TextView txtName, txtPrice, txtStockQuantity, txtDescription;
     private AppCompatButton btnAddToCart;
     private OkHttpClient client;
+
+    private static final String CHANNEL_ID = "cart_notifications";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,13 +86,16 @@ public class ProductDetailActivity extends AppCompatActivity {
     }
 
     private void addToCart(int productId, int quantity) {
-        int userId = 884;
+        int userId = 1; // Giả định userId là 1 cho ví dụ này
 
-        String url = "https://10.0.2.2:7230/api/Cart/add-to-cart?userId=" + userId + "&productId=" + productId + "&quantity=" + quantity;
+        // Đảm bảo URL giống như trong yêu cầu curl
+        String url = "https://10.0.2.2:7177/Cart/add-to-cart?userId=" + userId
+                + "&ProductID=" + productId + "&Quantity=" + quantity;
 
+        // Tạo yêu cầu
         Request request = new Request.Builder()
                 .url(url)
-                .post(RequestBody.create("", MediaType.parse("application/json")))
+                .post(RequestBody.create(MediaType.parse("application/json; charset=utf-8"), "{}")) // Gửi body rỗng
                 .build();
 
         client.newCall(request).enqueue(new Callback() {
@@ -99,24 +110,16 @@ public class ProductDetailActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     String responseBody = response.body() != null ? response.body().string() : "No response body";
                     try {
+                        // Xử lý phản hồi JSON
                         JSONObject jsonResponse = new JSONObject(responseBody);
-
-                        // Extract data from the JSON object
-                        int returnedProductId = jsonResponse.getInt("productId");
                         String returnedProductName = jsonResponse.getString("productName");
-                        String returnedProductDescription = jsonResponse.getString("productDescription");
-                        double returnedPrice = jsonResponse.getDouble("price");
-                        int returnedStockQuantity = jsonResponse.getInt("stockQuantity");
-                        String returnedImage = jsonResponse.getString("image");
+                        int returnedQuantity = jsonResponse.getInt("quantity");
 
-                        // You can use the extracted data as needed, e.g., display it
                         runOnUiThread(() -> {
-                            Toast.makeText(ProductDetailActivity.this, "Added to cart successfully: " + returnedProductName, Toast.LENGTH_SHORT).show();
-                            // Optionally update UI or perform actions with the returned data
+                            Toast.makeText(ProductDetailActivity.this, "Added to cart: " + returnedProductName + ", Quantity: " + returnedQuantity, Toast.LENGTH_SHORT).show();
+                            showAddToCartNotification(returnedProductName,returnedQuantity);
                         });
 
-                        // Debug: Display response body
-                        System.out.println("Response body: " + responseBody);
                     } catch (JSONException e) {
                         e.printStackTrace();
                         runOnUiThread(() -> Toast.makeText(ProductDetailActivity.this, "Failed to parse response: " + e.getMessage(), Toast.LENGTH_LONG).show());
@@ -127,6 +130,57 @@ public class ProductDetailActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+    private void createNotificationChannel() {
+        // Check if running on Android Oreo or higher
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            // Set channel attributes
+            CharSequence name = "Cart Notifications";
+            String description = "Channel for cart-related notifications";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+
+            // Create the NotificationChannel
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+
+            // Register the channel with the system
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            if (notificationManager != null) {
+                notificationManager.createNotificationChannel(channel);
+            }
+        }
+    }
+    private void showAddToCartNotification(String productName, int quantity) {
+        createNotificationChannel(); // Ensure the notification channel exists
+
+        // Create an explicit intent for an Activity in your app
+        Intent intent = new Intent(this, CartFragment.class); // Replace with the activity you want to open
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+        // Create PendingIntent with IMMUTABLE flag
+        PendingIntent pendingIntent = PendingIntent.getActivity(
+                this,
+                0,
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
+        );
+
+        // Build the notification
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setSmallIcon(R.drawable.shopping_cart) // Use a valid drawable resource
+                .setContentTitle("Added to Cart")
+                .setContentText("Product: " + productName + ", Quantity: " + quantity)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true);
+
+        // Show the notification
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        if (notificationManager != null) {
+            notificationManager.notify(1, builder.build());
+        } else {
+            Toast.makeText(this, "Notification manager is null", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }
