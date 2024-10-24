@@ -46,43 +46,43 @@
     </androidx.appcompat.widget.Toolbar>
 
     <!-- Icon and Text Views Section -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_marginTop="16dp"
         android:gravity="center"
-        android:layout_marginTop="16dp">
+        android:orientation="vertical">
 
         <!-- Icon -->
         <ImageView
             android:id="@+id/icon_success"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/circle"
-            android:contentDescription="Success Icon"/>
+            android:contentDescription="Success Icon"
+            android:src="@drawable/circle" />
 
         <!-- Payment Transaction Successful Text -->
         <TextView
             android:id="@+id/txtPaymentTransactionSuccessful"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Payment Transaction Successful"
-            android:textSize="23sp"
-            android:textStyle="bold"
             android:layout_marginTop="8dp"
-            android:gravity="center" />
+            android:gravity="center"
+            android:text="waiting payment"
+            android:textSize="23sp"
+            android:textStyle="bold" />
 
         <!-- Transaction Information Text -->
         <TextView
             android:id="@+id/txtTransactionInformation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Transaction Information"
-            android:textSize="23sp"
             android:layout_marginTop="10dp"
-            android:gravity="center" />
+            android:gravity="center"
+            android:text="Transaction Information"
+            android:textSize="23sp" />
     </LinearLayout>
-
     <!-- User Info Section with Border -->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -313,14 +313,25 @@
     </androidx.cardview.widget.CardView>
     <!-- View Details Button -->
     <Button
-        android:id="@+id/btnViewDetails"
+        android:id="@+id/btnPayment"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="View Details"
-        android:textSize="18sp"
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/red_orange"
-        android:textColor="@android:color/white" />
+        android:text="Payment"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btnSuccess"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/red_orange"
+        android:text="Success"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
 
 
 </LinearLayout>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/white"> <!-- Optional background color -->
+
+    <!-- Toolbar with Back Button -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="4dp">
+
+        <!-- LinearLayout to hold the title and the button -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Title with weight for centering -->
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Billing"
+                android:paddingTop="5dp"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:textSize="30sp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_marginEnd="16dp"/>
+
+            <!-- Back Button aligned to the right -->
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/red_orange"
+                android:contentDescription="Back Button"
+                android:src="@android:drawable/ic_menu_close_clear_cancel"/>
+        </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <!-- Icon -->
+        <ImageView
+            android:id="@+id/icon_success"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="Success Icon"
+            android:src="@drawable/circle" />
+
+        <!-- Payment Transaction Successful Text -->
+        <TextView
+            android:id="@+id/txtPaymentTransactionSuccessful"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="Payment Transaction Successful"
+            android:textSize="23sp"
+            android:textStyle="bold" />
+
+        <!-- Transaction Information Text -->
+        <TextView
+            android:id="@+id/txtTransactionInformation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="Transaction Information"
+            android:textSize="23sp" />
+    </LinearLayout>
+</LinearLayout>
