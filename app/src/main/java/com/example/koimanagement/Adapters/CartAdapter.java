@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.koimanagement.Fragments.CartFragment;
 import com.example.koimanagement.IService.ICartService;
 import com.example.koimanagement.Models.CartItem;
 import com.example.koimanagement.R;
@@ -26,12 +27,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
     private List<CartItem> cartItems;
     private Context context;
-    private ICartService apiService; // API service để gọi đến các phương thức API
+    private ICartService apiService; // API service to call API methods
+    private CartFragment cartFragment; // Tham chiếu đến CartFragment
 
-    public CartAdapter(Context context, List<CartItem> cartItems, ICartService apiService) {
+    public CartAdapter(Context context, List<CartItem> cartItems, ICartService apiService, CartFragment cartFragment) {
         this.context = context;
         this.cartItems = cartItems;
-        this.apiService = apiService; // Khởi tạo API service
+        this.apiService = apiService;
+        this.cartFragment = cartFragment;// Initialize API service
     }
 
     @NonNull
@@ -45,38 +48,93 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
         CartItem item = cartItems.get(position);
 
-        // Thiết lập tên sản phẩm và giá
+        // Set product name and price
         holder.txtProductName.setText(item.getProductName());
         holder.txtPrice.setText(item.getPrice() + " VND");
         holder.txtOrder.setText(String.valueOf(item.getQuantity()));
 
-        // Tải hình ảnh sản phẩm bằng Glide
+        // Load product image using Glide
         Glide.with(context)
                 .load(item.getImage())
                 .placeholder(R.drawable.replace)
                 .error(R.drawable.replace)
                 .into(holder.imageProduct);
 
-        // Xử lý sự kiện nhấn nút trừ
+        // Handle decrement button click
         holder.imageMinus.setOnClickListener(v -> {
             int currentQuantity = item.getQuantity();
             if (currentQuantity > 1) {
-                item.setQuantity(currentQuantity - 1);  // Sử dụng setQuantity để cập nhật
+                item.setQuantity(currentQuantity - 1);  // Update quantity
                 holder.txtOrder.setText(String.valueOf(item.getQuantity()));
-                notifyItemChanged(position);
+                notifyItemChanged(position); // Cập nhật giao diện
+                cartFragment.calculateTotalPrice();
+                updateQuantityInApi(item.getCartId(), item.getQuantity(), position);
             }
         });
 
-        // Xử lý sự kiện nhấn nút cộng
+        // Handle increment button click
         holder.imageAdd.setOnClickListener(v -> {
-            item.setQuantity(item.getQuantity() + 1); // Sử dụng setQuantity
+            item.setQuantity(item.getQuantity() + 1); // Update quantity
             holder.txtOrder.setText(String.valueOf(item.getQuantity()));
-            notifyItemChanged(position);
+            notifyItemChanged(position); // Cập nhật giao diện
+            cartFragment.calculateTotalPrice();
+            updateQuantityInApi(item.getCartId(), item.getQuantity(), position);
+        });
+       /* holder.imageAdd.setOnClickListener(v -> {
+            increaseQuantity(position);
         });
 
-        // Xử lý sự kiện nhấn nút xóa
+        // Sự kiện cho nút giảm số lượng
+        holder.imageMinus.setOnClickListener(v -> {
+            decreaseQuantity(position);
+        });*/
+        // Handle delete button click
         holder.imageTrash.setOnClickListener(v -> {
-            removeCartItem(item.getCartId(), position); // Gọi API xóa mặt hàng
+            removeCartItem(item.getCartId(), position); // Call API to delete item
+        });
+    }
+    /*public void increaseQuantity(int position) {
+        CartItem item = cartItems.get(position);
+        item.setQuantity(item.getQuantity() + 1); // Tăng số lượng
+        notifyItemChanged(position); // Cập nhật giao diện
+        cartFragment.calculateTotalPrice();
+        holder.txtOrder.setText(String.valueOf(item.getQuantity()));
+        updateQuantityInApi(item.getCartId(), item.getQuantity(), position);// Tính lại tổng giá
+    }
+
+    // Phương thức giảm số lượng
+    public void decreaseQuantity(int position) {
+        CartItem item = cartItems.get(position);
+        if (item.getQuantity() > 0) {
+            item.setQuantity(item.getQuantity() - 1); // Giảm số lượng
+            notifyItemChanged(position); // Cập nhật giao diện
+            cartFragment.calculateTotalPrice();
+            holder.txtOrder.setText(String.valueOf(item.getQuantity()));
+            updateQuantityInApi(item.getCartId(), item.getQuantity(), position);// Tính lại tổng giá
+        }
+    }*/
+    private void updateQuantityInApi(int cartId, int quantity, int position) {
+        Call<Boolean> call = apiService.updateCartItemQuantity(cartId, quantity);
+        call.enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                if (response.isSuccessful() && response.body() != null && response.body()) {
+                    // Successfully updated quantity
+                } else {
+                    Toast.makeText(context, "Failed to update quantity", Toast.LENGTH_SHORT).show();
+                    // Revert quantity change if API call fails
+                    cartItems.get(position).setQuantity(quantity > 1 ? quantity - 1 : 1);
+                    notifyItemChanged(position);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Boolean> call, Throwable t) {
+                Toast.makeText(context, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                // Revert quantity change on error
+                cartItems.get(position).setQuantity(quantity > 1 ? quantity - 1 : 1);
+                notifyItemChanged(position);
+            }
         });
     }
 
