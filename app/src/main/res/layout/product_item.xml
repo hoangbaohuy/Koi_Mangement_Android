@@ -33,16 +33,6 @@
         tools:text="Sample Product Name" />
 
     <!-- Product Description -->
-    <TextView
-        android:id="@+id/textDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Product Description"
-        android:textSize="15sp"
-        android:textColor="@android:color/darker_gray"
-        android:ellipsize="end"
-        android:maxLines="2"
-        tools:text="This is a sample description for the product that is being displayed here." />
 
     <!-- Price -->
     <LinearLayout

@@ -49,7 +49,7 @@ public class CartFragment extends Fragment {
     private ICartService apiService;
     private TextView txtTotal;
     private Button btnCheckOut;
-
+    int userId  = 1 ;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -81,12 +81,36 @@ public class CartFragment extends Fragment {
         loadCartItemsByUserID();
 
         // Set up the adapter
-        cartAdapter = new CartAdapter(getContext(), cartItems, apiService);
+        cartAdapter = new CartAdapter(getContext(), cartItems, apiService, this); // Thêm tham chiếu đến CartFragment
         recyclerViewCart.setAdapter(cartAdapter);
 
-        // Set click listener for checkout button
-        btnCheckOut.setOnClickListener(v -> showCheckoutDialog(0)); // Placeholder userId
 
+
+
+        // Set click listener for checkout button
+        btnCheckOut.setOnClickListener(v -> {
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
+            String jwtToken = sharedPreferences.getString("jwtToken", null);
+
+            if (jwtToken != null) {
+                // Decode JWT to get userId
+                DecodedJWT decodedJWT = JWT.decode(jwtToken);
+                String userIdString = decodedJWT.getClaim("userId").asString(); // Extract userId from JWT
+
+                if (userIdString != null) {
+                    try {
+                        int userId = Integer.parseInt(userIdString); // Convert userId to integer
+                        showCheckoutDialog(userId); // Pass the userId to the checkout dialog
+                    } catch (NumberFormatException e) {
+                        Toast.makeText(getContext(), "Invalid userId format", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(getContext(), "UserId not found in token", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(getContext(), "Invalid token", Toast.LENGTH_SHORT).show();
+            }
+        });
         return view;
     }
 
@@ -139,7 +163,7 @@ public class CartFragment extends Fragment {
     }
 
     // Method to calculate total price
-    private void calculateTotalPrice() {
+    public void calculateTotalPrice() { // Đổi từ private thành public
         double totalPrice = 0.0;
         for (CartItem item : cartItems) {
             totalPrice += item.getPrice() * item.getQuantity();
