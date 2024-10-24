@@ -30,9 +30,11 @@ import com.example.koimanagement.Models.Response.OrderResponse;
 import com.example.koimanagement.R;
 import com.google.gson.Gson;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -168,7 +170,8 @@ public class CartFragment extends Fragment {
         for (CartItem item : cartItems) {
             totalPrice += item.getPrice() * item.getQuantity();
         }
-        txtTotal.setText(String.format("%.0f VND", totalPrice));
+        NumberFormat numberFormat = NumberFormat.getInstance(new Locale("vi", "VN")); // Định dạng theo ngôn ngữ và vùng miền Việt Nam
+        txtTotal.setText(numberFormat.format(totalPrice) + " VND");
     }
 
     // Show AlertDialog to get address and phone from user

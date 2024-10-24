@@ -34,6 +34,8 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 import java.io.IOException;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 import javax.net.ssl.X509TrustManager;
 
@@ -100,7 +102,8 @@ public class ProductDetailActivity extends AppCompatActivity {
                 .into(imageProduct);
 
         txtName.setText(product.getProductName());
-        txtPrice.setText(String.format("%.2f", product.getPrice()) + " VND");
+        NumberFormat numberFormat = NumberFormat.getInstance(new Locale("vi", "VN")); // Định dạng theo ngôn ngữ và vùng miền Việt Nam
+        txtPrice.setText(numberFormat.format(product.getPrice()) + " VND");
         txtStockQuantity.setText("Stock: " + product.getStockQuantity());
         txtDescription.setText(product.getProductDescription());
 
