@@ -1,11 +1,17 @@
 package com.example.koimanagement.Activities;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.example.koimanagement.Adapters.OrderAdapter;
 import com.example.koimanagement.Models.Response.OrderResponse;
 import com.example.koimanagement.R;
@@ -37,11 +43,43 @@ public class OrderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.history_list);
-
+        ImageButton btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate back to the previous screen
+                onBackPressed(); // This will simulate the back button press
+            }
+        });
         recyclerView = findViewById(R.id.recyclerViewOrders);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        fetchOrders(1);
+        loadUserIdAndFetchOrders();
+    }
+
+    private void loadUserIdAndFetchOrders() {
+        // Lấy JWT từ SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
+        String jwtToken = sharedPreferences.getString("jwtToken", null);
+
+        if (jwtToken != null) {
+            // Giải mã JWT để lấy userID
+            DecodedJWT decodedJWT = JWT.decode(jwtToken);
+            String userIdString = decodedJWT.getClaim("userId").asString(); // Lấy userId dưới dạng chuỗi
+
+            if (userIdString != null) {
+                try {
+                    int userId = Integer.parseInt(userIdString); // Chuyển đổi chuỗi thành int
+                    fetchOrders(userId); // Gọi hàm fetchOrders với userId đã lấy được
+                } catch (NumberFormatException e) {
+                    Toast.makeText(this, "Invalid userId format", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(this, "Không tìm thấy userId trong token", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(this, "Token không hợp lệ", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void fetchOrders(int userId) {

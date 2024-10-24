@@ -15,6 +15,7 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.Url;
@@ -33,5 +34,6 @@ public interface ICartService {
     @POST("/Order/create-order")
     Call<OrderResponse> createOrder(@Query("userID") int userId, @Body Map<String, String> requestBody);
 
-
+    @PUT("Cart/updatequantity")
+    Call<Boolean> updateCartItemQuantity(@Query("cartId") int cartId, @Query("quantity") int quantity);
 }
