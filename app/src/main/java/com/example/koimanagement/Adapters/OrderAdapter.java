@@ -16,7 +16,9 @@ import com.example.koimanagement.Fragments.CartFragment;
 import com.example.koimanagement.Models.Response.OrderResponse;
 import com.example.koimanagement.R;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHolder> {
     private List<OrderResponse> orders;
@@ -43,7 +45,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         // Set Order ID, Order Date, Total Price, Address, and Phone
         holder.tvOrderId.setText("Order ID: " + order.getOrderId());
         holder.tvOrderDate.setText("Order Date: " + order.getOrderDate());
-        holder.tvTotalPrice.setText("Total Price: $" + order.getTotalPrice());
+        NumberFormat numberFormat = NumberFormat.getInstance(new Locale("vi", "VN")); // Định dạng theo ngôn ngữ và vùng miền Việt Na
+        holder.tvTotalPrice.setText("Total Price: " + numberFormat.format(order.getTotalPrice()) + " VND");
         holder.tvAddress.setText("Address: " + order.getAddress());
         holder.tvPhone.setText("Phone: " + order.getPhone());
 

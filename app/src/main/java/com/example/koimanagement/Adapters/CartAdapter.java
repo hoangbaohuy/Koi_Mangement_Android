@@ -17,7 +17,9 @@ import com.example.koimanagement.IService.ICartService;
 import com.example.koimanagement.Models.CartItem;
 import com.example.koimanagement.R;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -50,7 +52,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
         // Set product name and price
         holder.txtProductName.setText(item.getProductName());
-        holder.txtPrice.setText(item.getPrice() + " VND");
+        NumberFormat numberFormat = NumberFormat.getInstance(new Locale("vi", "VN")); // Định dạng theo ngôn ngữ và vùng miền Việt Nam
+        holder.txtPrice.setText(numberFormat.format(item.getPrice()) + " VND");
         holder.txtOrder.setText(String.valueOf(item.getQuantity()));
 
         // Load product image using Glide

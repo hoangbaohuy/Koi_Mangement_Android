@@ -13,7 +13,10 @@ import com.example.koimanagement.Activities.OrderActivity;
 import com.example.koimanagement.Models.Response.OrderResponse;
 import com.example.koimanagement.R;
 import com.google.gson.Gson;
+
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class CheckoutSummaryActivity extends AppCompatActivity {
 
@@ -56,7 +59,8 @@ public class CheckoutSummaryActivity extends AppCompatActivity {
             txtOrderId.setText(String.valueOf(orderResponse.getOrderId()));
             txtUserId.setText(String.valueOf(orderResponse.getUserId()));
             txtOrderDate.setText(orderResponse.getOrderDate());
-            txtTotalPrice.setText(String.format("%.0f VND", orderResponse.getTotalPrice()));
+            NumberFormat numberFormat = NumberFormat.getInstance(new Locale("vi", "VN")); // Định dạng theo ngôn ngữ và vùng miền Việt Nam
+            txtTotalPrice.setText(numberFormat.format(orderResponse.getTotalPrice())+ " VND");
             txtAddress.setText(orderResponse.getAddress());
             txtPhone.setText(orderResponse.getPhone());
             txtOrderItems.setText(getOrderItemsString(orderResponse.getOrderItems()));
