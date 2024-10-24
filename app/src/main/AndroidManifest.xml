@@ -29,6 +29,7 @@
 <!--            android:name=".Activities.m"-->
 <!--            android:exported="true">-->
 <!--        </activity>-->
+
         <activity
             android:name=".Fragments.CheckoutSummaryActivity"
             android:exported="true">
