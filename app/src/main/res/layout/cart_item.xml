@@ -8,15 +8,14 @@
     android:layout_height="wrap_content">
 
     <!-- Product Image -->
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imageProduct"
         android:layout_width="130dp"
         android:layout_height="130dp"
         app:srcCompat="@drawable/replace"
         android:scaleType="centerCrop"
-        android:paddingLeft="8dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
+        android:padding="2dp"
+        app:shapeAppearanceOverlay="@style/circular"
         tools:ignore="MissingConstraints" />
 
     <!-- Product Name TextView -->

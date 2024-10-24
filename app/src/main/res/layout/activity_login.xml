@@ -54,7 +54,7 @@
         android:layout_height="50dp"
         android:layout_margin="32dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:hint="Password"
         android:textColorHint="#756c6c"
         android:background="@drawable/edittext_background"

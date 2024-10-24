@@ -8,14 +8,14 @@
     android:padding="5dp"
     android:background="@drawable/rounded_border"> <!-- Rounded background -->
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imageIcon"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:padding="7dp"
         android:layout_gravity="center_horizontal"
         android:scaleType="centerCrop"
         android:adjustViewBounds="true"
+        app:shapeAppearanceOverlay="@style/round"
         android:background="@drawable/rounded_image"
         tools:srcCompat="@tools:sample/avatars"/>
 
