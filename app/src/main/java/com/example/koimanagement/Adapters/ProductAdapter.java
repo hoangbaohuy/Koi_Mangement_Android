@@ -45,7 +45,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         Product product = productList.get(position);
         holder.txtName.setText(product.getProductName());
-        holder.txtDescription.setText(product.getProductDescription());
         holder.txtPrice.setText(String.format("$%.2f", product.getPrice()));
         holder.txtStockQuantity.setText(String.valueOf(product.getStockQuantity()));
 
@@ -85,14 +84,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     }
 
     public static class ProductViewHolder extends RecyclerView.ViewHolder {
-        private final TextView txtName, txtPrice, txtDescription, txtStockQuantity;
+        private final TextView txtName, txtPrice, txtStockQuantity;
         private final ImageView productImg;
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
             txtName = itemView.findViewById(R.id.textName);
             txtPrice = itemView.findViewById(R.id.textPrice);
-            txtDescription = itemView.findViewById(R.id.textDescription);
             txtStockQuantity = itemView.findViewById(R.id.textStockQuantity);
             productImg = itemView.findViewById(R.id.imageIcon);
         }
