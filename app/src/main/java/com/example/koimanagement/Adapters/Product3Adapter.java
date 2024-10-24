@@ -23,7 +23,9 @@ import com.example.koimanagement.Activities.ProductDetailActivity;
 import com.example.koimanagement.Models.Product;
 import com.example.koimanagement.R;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class Product3Adapter extends RecyclerView.Adapter<Product3Adapter.ProductViewHolder> {
     private final Context context;
@@ -45,7 +47,8 @@ public class Product3Adapter extends RecyclerView.Adapter<Product3Adapter.Produc
     public void onBindViewHolder(@NonNull Product3Adapter.ProductViewHolder holder, int position) {
         Product product = productList.get(position);
         holder.txtName.setText(product.getProductName());
-        holder.txtPrice.setText(String.format("$%.2f", product.getPrice()));
+        NumberFormat numberFormat = NumberFormat.getInstance(new Locale("vi", "VN")); // Định dạng theo ngôn ngữ và vùng miền Việt Nam
+        holder.txtPrice.setText(numberFormat.format(product.getPrice()) + " VND");
         holder.txtStockQuantity.setText(String.valueOf(product.getStockQuantity()));
 
 
