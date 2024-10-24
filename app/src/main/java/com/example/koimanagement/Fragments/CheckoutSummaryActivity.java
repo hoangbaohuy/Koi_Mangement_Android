@@ -49,21 +49,20 @@ public class CheckoutSummaryActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        // Get the order details from the intent
-//        if (getIntent().hasExtra("orderDetails")) {
-//            String orderDetailsJson = getIntent().getStringExtra("orderDetails");
-//            OrderResponse orderResponse = parseOrderJson(orderDetailsJson);
-//
-//            // Set the TextViews
-//            txtOrderId.setText(String.valueOf(orderResponse.getOrderId()));
-//            txtUserId.setText(String.valueOf(orderResponse.getUserId()));
-//            txtOrderDate.setText(orderResponse.getOrderDate());
-//            NumberFormat numberFormat = NumberFormat.getInstance(new Locale("vi", "VN")); // Định dạng theo ngôn ngữ và vùng miền Việt Nam
-//            txtTotalPrice.setText(numberFormat.format(orderResponse.getTotalPrice())+ " VND");
-//            txtAddress.setText(orderResponse.getAddress());
-//            txtPhone.setText(orderResponse.getPhone());
-//            txtOrderItems.setText(getOrderItemsString(orderResponse.getOrderItems()));
-//        }
+        if (getIntent().hasExtra("orderDetails")) {
+            String orderDetailsJson = getIntent().getStringExtra("orderDetails");
+            OrderResponse orderResponse = parseOrderJson(orderDetailsJson);
+
+            // Set the TextViews
+            txtOrderId.setText(String.valueOf(orderResponse.getOrderId()));
+            txtUserId.setText(String.valueOf(orderResponse.getUserId()));
+            txtOrderDate.setText(orderResponse.getOrderDate());
+            NumberFormat numberFormat = NumberFormat.getInstance(new Locale("vi", "VN")); // Định dạng theo ngôn ngữ và vùng miền Việt Nam
+            txtTotalPrice.setText(numberFormat.format(orderResponse.getTotalPrice())+ " VND");
+            txtAddress.setText(orderResponse.getAddress());
+            txtPhone.setText(orderResponse.getPhone());
+            txtOrderItems.setText(getOrderItemsString(orderResponse.getOrderItems()));
+        }
     }
 
     private OrderResponse parseOrderJson(String orderDetailsJson) {

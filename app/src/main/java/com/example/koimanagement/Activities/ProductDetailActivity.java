@@ -3,7 +3,9 @@ package com.example.koimanagement.Activities;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Base64;
@@ -17,6 +19,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.app.NotificationCompat;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.bumptech.glide.Glide;
 import com.example.koimanagement.Fragments.CartFragment;
 import com.example.koimanagement.Models.Product;
@@ -56,11 +60,11 @@ public class ProductDetailActivity extends AppCompatActivity {
 
 
         // Retrieve the JWT from SharedPreferences
-        SharedPreferences sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE);
-        String jwtToken = sharedPreferences.getString("JWT", null);
 
-        // Get the userId from the JWT
-        int userId = (jwtToken != null) ? getUserIdFromJwt(jwtToken) : -1;
+//        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
+//        String jwtToken = sharedPreferences.getString("jwtToken", null);
+//        // Get the userId from the JWT
+//        int userId = (jwtToken != null) ? getUserIdFromJwt(jwtToken) : -1;
 
 
         // Get the passed product object
@@ -109,29 +113,31 @@ public class ProductDetailActivity extends AppCompatActivity {
 
         // Back button click listener
         imageBack.setOnClickListener(v -> finish());
-
-        // Add to cart button click listener
         btnAddToCart.setOnClickListener(v -> {
-            Toast.makeText(this, "Add to Cart clicked", Toast.LENGTH_SHORT).show();
-            addToCart(product.getProductId(), quantity, userId);
-        });
-    }
-    private int getUserIdFromJwt(String jwt) {
-        // Split the JWT token into parts
-        String[] parts = jwt.split("\\.");
-        if (parts.length == 3) {
-            // Decode the payload (the second part)
-            String payload = parts[1];
-            // Decode from Base64
-            String json = new String(Base64.decode(payload, Base64.URL_SAFE));
-            try {
-                JSONObject jsonObject = new JSONObject(json);
-                return jsonObject.getInt("userId"); // Adjust according to your JWT structure
-            } catch (JSONException e) {
-                e.printStackTrace();
+            // Lấy SharedPreferences
+            SharedPreferences sharedPreferences = getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
+            String jwtToken = sharedPreferences.getString("jwtToken", null);
+
+            if (jwtToken != null) {
+                try {
+                    // Giải mã JWT để lấy userId
+                    DecodedJWT decodedJWT = JWT.decode(jwtToken);
+                    String userIdString = decodedJWT.getClaim("userId").asString();
+
+                    if (userIdString != null) {
+                        int userId = Integer.parseInt(userIdString);
+                        // Thêm sản phẩm vào giỏ hàng
+                        addToCart(product.getProductId(), quantity, userId);
+                    } else {
+                        Toast.makeText(ProductDetailActivity.this, "User ID not found in JWT", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(ProductDetailActivity.this, "Error decoding JWT: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(ProductDetailActivity.this, "JWT token not found", Toast.LENGTH_SHORT).show();
             }
-        }
-        return -1; // or handle as needed
+        });
     }
     private void addToCart(int productId, int quantity,int userId) {
 
