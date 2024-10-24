@@ -52,6 +52,8 @@ dependencies {
 
     implementation ("com.auth0:java-jwt:3.18.2")
 
-
-
+    // ViewPager2 dependency
+    implementation ("androidx.viewpager2:viewpager2:1.0.0")
+    // Rounded ImageView dependency
+    implementation ("com.makeramen:roundedimageview:2.3.0")
 }
