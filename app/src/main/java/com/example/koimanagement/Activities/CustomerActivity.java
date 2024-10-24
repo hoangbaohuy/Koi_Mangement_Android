@@ -25,10 +25,14 @@ import com.example.koimanagement.Fragments.AccountFragment;
 import com.example.koimanagement.Fragments.CartFragment;
 import com.example.koimanagement.Fragments.HomeFragment;
 import com.example.koimanagement.Fragments.ProductFragment;
+import com.example.koimanagement.MapsFragment;
 import com.example.koimanagement.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+
+import im.crisp.client.external.ChatActivity;
+import im.crisp.client.external.Crisp;
 
 public class CustomerActivity extends AppCompatActivity {
     FloatingActionButton fab;
@@ -74,6 +78,8 @@ public class CustomerActivity extends AppCompatActivity {
                 showBottomDialog();
             }
         });
+
+        Crisp.configure(getApplicationContext(), "ea85235a-fdd6-4b5c-ab9d-a0d3fc0aac72");
     }
 
     private  void replaceFragment(Fragment fragment) {
@@ -113,7 +119,8 @@ public class CustomerActivity extends AppCompatActivity {
         chatLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent crispIntent = new Intent(CustomerActivity.this, ChatActivity.class);
+                startActivity(crispIntent);
                 dialog.dismiss();
                 Toast.makeText(CustomerActivity.this,"Chat is Clicked",Toast.LENGTH_SHORT).show();
 
@@ -125,6 +132,7 @@ public class CustomerActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 dialog.dismiss();
+                replaceFragment(new MapsFragment());
                 Toast.makeText(CustomerActivity.this,"Location is Clicked",Toast.LENGTH_SHORT).show();
 
             }

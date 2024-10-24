@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.google.android.libraries.mapsplatform.secrets.gradle.plugin)
 }
 
 android {
@@ -12,7 +13,7 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
+        multiDexEnabled = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -56,6 +57,9 @@ dependencies {
     implementation ("androidx.viewpager2:viewpager2:1.0.0")
     // Rounded ImageView dependency
     implementation ("com.makeramen:roundedimageview:2.3.0")
-
-
+    //chat
+    implementation ("im.crisp:crisp-sdk:2.0.5")
+    implementation ("androidx.multidex:multidex:2.0.1")
+    //map
+    implementation("com.google.android.gms:play-services-maps:19.0.0")
 }
