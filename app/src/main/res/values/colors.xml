@@ -14,4 +14,9 @@
     <color name="primary_color">#03A9F4</color>
     <color name="primary_dark_color">#0288D1</color>
     <color name="accent_color">#FFC107</color>
+    <color name="background_color">#F0F0F0</color> <!-- Light gray background -->
+    <color name="primary_text_color">#333333</color> <!-- Dark text color -->
+    <color name="secondary_text_color">#555555</color> <!-- Medium text color -->
+    <color name="button_color">#6200EE</color> <!-- Purple button color -->
+
 </resources>
