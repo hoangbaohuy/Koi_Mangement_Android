@@ -32,9 +32,6 @@ public class SlideAdapter extends RecyclerView.Adapter<SlideAdapter.SlideViewHol
     @Override
     public void onBindViewHolder(@NonNull SlideViewHolder holder, int position) {
         holder.setImage(slideItems.get(position));
-        if (position == slideItems.size() -2) {
-            viewPager2.post(runnable);
-        }
     }
 
     @Override
@@ -55,11 +52,5 @@ public class SlideAdapter extends RecyclerView.Adapter<SlideAdapter.SlideViewHol
             imageView.setImageResource(slideItem.getImage());
         }
     }
-    private Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            slideItems.addAll(slideItems);
-            notifyDataSetChanged();
-        }
-    };
+
 }

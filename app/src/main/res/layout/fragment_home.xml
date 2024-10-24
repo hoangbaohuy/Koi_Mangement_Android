@@ -64,12 +64,12 @@
 
     <!-- RecyclerView below the "Popular" and "See All" TextViews -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/recyclerViewProducts"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="400dp"
-        android:orientation="horizontal"
-        android:layout_below="@id/seeAllTextView"
-        android:padding="10dp" />
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
+        android:padding="16dp"
+        android:scrollbars="vertical"
+        android:layout_marginTop="370dp"/>
 
 </FrameLayout>
