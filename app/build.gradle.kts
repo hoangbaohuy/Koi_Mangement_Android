@@ -56,4 +56,6 @@ dependencies {
     implementation ("androidx.viewpager2:viewpager2:1.0.0")
     // Rounded ImageView dependency
     implementation ("com.makeramen:roundedimageview:2.3.0")
+
+
 }
